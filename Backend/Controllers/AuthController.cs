@@ -4,6 +4,8 @@ using System.Security.Cryptography;
 using System.Text;
 using Backend.Data;
 using Backend.Dtos;
+using Backend.Enums;
+using Backend.Extensions;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -24,13 +26,14 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("[action]")]
-    public IActionResult Register(UserDto userDto)
+    public IActionResult Register(RegisterDto registerDto)
     {
-        var hashedPassword = HashPassword(userDto.Password);
+        var hashedPassword = HashPassword(registerDto.Password);
         var user = new User()
         {
-            Email = userDto.Email,
-            PasswordHash = hashedPassword
+            Email = registerDto.Email,
+            PasswordHash = hashedPassword,
+            Role = registerDto.Role.ParseEnum<UserRole>()
         };
 
         _context.Add(user);
@@ -39,15 +42,15 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("[action]")]
-    public IActionResult Login(UserDto userDto)
+    public IActionResult Login(LoginDto loginDto)
     {
-        var dbUser = _context.Users.FirstOrDefault(x => x.Email == userDto.Email);
+        var dbUser = _context.Users.FirstOrDefault(x => x.Email == loginDto.Email);
         if (dbUser == null)
         {
             return BadRequest("Email not found.");
         }
 
-        if (!VerifyHashedPassword(dbUser.PasswordHash, userDto.Password))
+        if (!VerifyHashedPassword(dbUser.PasswordHash, loginDto.Password))
         {
             return BadRequest("Incorrect password.");
         }
@@ -75,8 +78,9 @@ public class AuthController : ControllerBase
         var claims = new List<Claim>()
         {
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.NameId, user.ID.ToString()),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            new Claim("userId", user.ID.ToString()),
+            new Claim("email", user.Email),
+            new Claim("role", user.RoleStr)
         };
 
         var expires = DateTime.Now.AddDays(_securityToken.ExpireInDays);
