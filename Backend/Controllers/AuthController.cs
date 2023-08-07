@@ -44,12 +44,12 @@ public class AuthController : ControllerBase
         var dbUser = _context.Users.FirstOrDefault(x => x.Email == userDto.Email);
         if (dbUser == null)
         {
-            return NotFound();
+            return BadRequest("Email not found.");
         }
 
         if (!VerifyHashedPassword(dbUser.PasswordHash, userDto.Password))
         {
-            return Unauthorized();
+            return BadRequest("Incorrect password.");
         }
 
         return Ok(new { token = GetJwtToken(dbUser) });
