@@ -1,2 +1,14 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div class="app">
+  <app-header></app-header>
+  <mat-sidenav-container>
+    <mat-sidenav>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/home">Home</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

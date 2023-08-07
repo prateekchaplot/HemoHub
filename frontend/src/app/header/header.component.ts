@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AppService } from '../services/app.service';
-import { User } from '../models/user';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +10,10 @@ import { User } from '../models/user';
 })
 export class HeaderComponent {
   
-  constructor(private authService: AuthService, private router: Router, public appService: AppService) {
+  constructor(
+    private authService: AuthService,
+    public appService: AppService,
+    private router: Router) {
   }
 
   onLogout() {

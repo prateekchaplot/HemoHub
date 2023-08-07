@@ -7,6 +7,7 @@ import { User } from '../models/user';
 })
 export class AppService {
   user: User | null = null;
+  headerHeight: number = 0;
 
   constructor(private authService: AuthService) { }
 
