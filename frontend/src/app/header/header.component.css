@@ -5,3 +5,8 @@
 .justify-content-center {
   justify-content: center;
 }
+
+.header-name {
+  margin-right: 16px;
+  font-size: large;
+}

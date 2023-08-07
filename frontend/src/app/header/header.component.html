@@ -1,6 +1,11 @@
-<mat-toolbar color="primary" *ngIf="isAuthenticated()">
+<mat-toolbar color="primary" *ngIf="!!appService.user">
   <span>Hemo Hub</span>
   <span class="spacer"></span>
+
+  <div class="header-name">
+    <span>Welcome, {{ appService.user.email }}!</span>
+  </div>
+
   <button mat-raised-button color="warn" (click)="onLogout()">
     <mat-icon>logout</mat-icon>
     Logout
@@ -10,7 +15,7 @@
 <mat-toolbar
   class="justify-content-center"
   color="primary"
-  *ngIf="!isAuthenticated()"
+  *ngIf="!appService.user"
 >
   <span>Hemo Hub</span>
 </mat-toolbar>
