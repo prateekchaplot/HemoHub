@@ -1,25 +1,23 @@
 <div class="app">
   <app-header></app-header>
+
   <mat-sidenav-container [hasBackdrop]="false">
-    <mat-sidenav #sidenav [opened]="true" [mode]="'side'">
+    <mat-sidenav
+      #sidenav
+      [opened]="true"
+      [mode]="'side'"
+      *ngIf="isAuthenticated()"
+    >
       <mat-nav-list>
-        <a mat-list-item routerLink="/home">
-          <!-- <label><mat-icon>home</mat-icon> Home</label> -->
-          <!-- <button mat-button color="disabled"> -->
-          <mat-icon>home</mat-icon>
-          Home
-          <!-- </button> -->
-        </a>
-        <a mat-list-item routerLink="/home"><mat-icon>home</mat-icon> Search</a>
-        <a mat-list-item routerLink="/home"
-          ><mat-icon>home</mat-icon> Exchange</a
+        <mat-list-item
+          routerLink="{{ item.path }}"
+          *ngFor="let item of sidemenu"
         >
-        <a mat-list-item routerLink="/home"
-          ><mat-icon>home</mat-icon> Requests</a
-        >
-        <a mat-list-item routerLink="/home"
-          ><mat-icon>home</mat-icon> Statistics</a
-        >
+          <mat-icon matListItemIcon class="mat-icon-margin">
+            {{ item.icon }}
+          </mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
 

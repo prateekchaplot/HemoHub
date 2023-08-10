@@ -15,3 +15,7 @@ mat-sidenav-container {
 mat-sidenav {
   width: 20vh;
 }
+
+.mat-icon-margin {
+  margin-right: 8px !important;
+}
