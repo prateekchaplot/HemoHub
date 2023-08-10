@@ -12,4 +12,6 @@ public class RegisterDto
 
     [EnumDataType(typeof(UserRole))]
     public string Role { get; set; } = "Member";
+    public string BloodGroup { get; set; }
+    public string Name { get; set; }
 }

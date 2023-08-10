@@ -6,6 +6,7 @@ using Backend.Data;
 using Backend.Dtos;
 using Backend.Enums;
 using Backend.Extensions;
+using Backend.Helpers;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -28,12 +29,20 @@ public class AuthController : ControllerBase
     [HttpPost("[action]")]
     public IActionResult Register(RegisterDto registerDto)
     {
+        var isParsed = registerDto.BloodGroup.TryToBloodGroup(out BloodGroup bloodGroup);
+        if (!isParsed)
+        {
+            return BadRequest("Invalid 'bloodGroup' value.");
+        }
+
         var hashedPassword = HashPassword(registerDto.Password);
         var user = new User()
         {
             Email = registerDto.Email,
             PasswordHash = hashedPassword,
-            Role = registerDto.Role.ParseEnum<UserRole>()
+            Role = registerDto.Role.ParseEnum<UserRole>(),
+            Name = registerDto.Name,
+            BloodGroup = bloodGroup
         };
 
         _context.Add(user);
@@ -80,6 +89,7 @@ public class AuthController : ControllerBase
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim("userId", user.ID.ToString()),
             new Claim("email", user.Email),
+            new Claim("name", user.Name),
             new Claim("role", user.RoleStr)
         };
 

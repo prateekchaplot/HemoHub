@@ -21,25 +21,25 @@ export class AppComponent implements AfterViewInit {
     {
       'id': 2,
       'label': 'Search',
-      'path': '/home',
+      'path': '/search',
       'icon': 'search'
     },
     {
       'id': 3,
       'label': 'Exchange',
-      'path': '/home',
+      'path': '/exchange',
       'icon': 'swap_horiz'
     },
     {
       'id': 4,
       'label': 'Requests',
-      'path': '/home',
+      'path': '/requests',
       'icon': 'request_quote'
     },
     {
       'id': 5,
       'label': 'Analytics',
-      'path': '/home',
+      'path': '/analytics',
       'icon': 'bar_chart'
     }
   ]

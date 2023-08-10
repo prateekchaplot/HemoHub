@@ -21,6 +21,10 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SearchComponent } from './pages/search/search.component';
+import { ExchangeComponent } from './pages/exchange/exchange.component';
+import { RequestsComponent } from './pages/requests/requests.component';
+import { AnalyticsComponent } from './pages/analytics/analytics.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { HeaderComponent } from './components/header/header.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent,
+    ExchangeComponent,
+    RequestsComponent,
+    AnalyticsComponent
   ],
   imports: [
     BrowserModule,

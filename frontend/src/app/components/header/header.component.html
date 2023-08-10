@@ -1,13 +1,12 @@
 <mat-toolbar color="primary" *ngIf="!!appService.user">
-  <!-- <button mat-icon-button (click)="onToggle()">
-    <mat-icon>menu</mat-icon>
-  </button> -->
-
   <span>Hemo Hub</span>
   <span class="spacer"></span>
 
   <div class="header-name">
-    <span>Welcome, {{ appService.user.email }}!</span>
+    <span>Welcome, {{ appService.user.email }}</span>
+    <mat-chip highlighted color="accent" class="ml-8">{{
+      appService.user.role
+    }}</mat-chip>
   </div>
 
   <button mat-raised-button color="warn" (click)="onLogout()">

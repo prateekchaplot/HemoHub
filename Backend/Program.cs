@@ -8,7 +8,8 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add database
-builder.Services.AddDbContext<Context>(x => x.UseInMemoryDatabase("HemoHub"));
+string connStr = builder.Configuration.GetConnectionString("Database") ?? throw new Exception("'Database' key not found");
+builder.Services.AddDbContext<Context>(x => x.UseSqlite(connStr));
 
 // Add services to the container.
 builder.Services.AddControllers();
