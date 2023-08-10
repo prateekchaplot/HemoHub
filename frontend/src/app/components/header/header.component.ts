@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { AppService } from '../services/app.service';
-import { SidenavService } from '../services/sidenav.service';
+import { AppService } from '../../services/app.service';
+import { SidenavService } from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-header',
