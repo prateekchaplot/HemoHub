@@ -21,7 +21,6 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    HeaderComponent,
-    SidenavComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,8 @@
 <mat-toolbar color="primary" *ngIf="!!appService.user">
-  <button mat-icon-button>
+  <button mat-icon-button (click)="onToggle()">
     <mat-icon>menu</mat-icon>
   </button>
+
   <span>Hemo Hub</span>
   <span class="spacer"></span>
 

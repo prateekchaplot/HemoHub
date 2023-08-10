@@ -11,3 +11,7 @@ app-header {
 mat-sidenav-container {
   flex: 1 1 auto;
 }
+
+mat-sidenav {
+  width: 20vh;
+}

@@ -2,17 +2,18 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AppService } from '../services/app.service';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-  
+export class HeaderComponent {  
   constructor(
-    private authService: AuthService,
     public appService: AppService,
+    private authService: AuthService,
+    private sidenavService: SidenavService,
     private router: Router) {
   }
 
@@ -24,5 +25,9 @@ export class HeaderComponent {
 
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  onToggle() {
+    this.sidenavService.toggle();
   }
 }
