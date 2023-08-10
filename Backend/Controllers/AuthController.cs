@@ -42,7 +42,15 @@ public class AuthController : ControllerBase
             PasswordHash = hashedPassword,
             Role = registerDto.Role.ParseEnum<UserRole>(),
             Name = registerDto.Name,
-            BloodGroup = bloodGroup
+            BloodGroup = bloodGroup,
+            Mobile = registerDto.Mobile,
+            Address = new()
+            {
+                StreetAddress = registerDto.Address.StreetAddress,
+                City = registerDto.Address.City,
+                State = registerDto.Address.State,
+                Country = registerDto.Address.Country
+            }
         };
 
         _context.Add(user);

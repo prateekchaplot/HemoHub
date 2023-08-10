@@ -10,4 +10,5 @@ public class Context : DbContext
     }
 
     public DbSet<User> Users => Set<User>();
+    public DbSet<Address> Address => Set<Address>();
 }

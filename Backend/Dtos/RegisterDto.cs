@@ -14,4 +14,6 @@ public class RegisterDto
     public string Role { get; set; } = "Member";
     public string BloodGroup { get; set; }
     public string Name { get; set; }
+    public string Mobile { get; set; }
+    public AddressDto Address { get; set; }
 }

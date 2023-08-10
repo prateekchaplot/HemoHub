@@ -22,8 +22,6 @@ public class User
     [NotMapped]
     public UserRole Role { get; set; } = UserRole.Member;
 
-    public bool IsProfileCompleted { get; set; } = false;
-
     [NotMapped]
     public BloodGroup BloodGroup { get; set; }
 
@@ -37,4 +35,9 @@ public class User
             BloodGroup = bloodGroup;
         }
     }
+
+    public string Mobile { get; set; }
+
+    public Guid AddressId { get; set; }
+    public Address Address { get; set; }
 }
