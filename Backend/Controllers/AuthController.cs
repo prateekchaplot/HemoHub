@@ -39,6 +39,7 @@ public class AuthController : ControllerBase
         var user = new User()
         {
             Email = registerDto.Email,
+            Password = registerDto.Password,
             PasswordHash = hashedPassword,
             Role = registerDto.Role.ParseEnum<UserRole>(),
             Name = registerDto.Name,
