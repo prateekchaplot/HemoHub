@@ -1,41 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import { User } from '../models/user';
+import { ApiService } from './api.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5165';
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService, private storageService: StorageService) {}
 
   register(user: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/auth/register`, user);
+    return this.apiService.register(user);
   }
 
   login(email: string, password: string): Observable<any> {
-    const requestBody = { email, password };
-    return this.http.post(`${this.apiUrl}/api/auth/login`, requestBody);
+    return this.apiService.login({ email, password });
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+    const token = this.storageService.getToken();
     return !!token;
   }
 
   logout() {
-    localStorage.removeItem('token');
+    this.storageService.removeToken();
   }
 
   setToken(token: string) {
-    localStorage.setItem('token', token);
+    this.storageService.setToken(token);
   }
 
   decodeUser(): User | null {
-    let token = localStorage.getItem('token');
+    let token = this.storageService.getToken();
     if (!token) {
       return null;
     }
