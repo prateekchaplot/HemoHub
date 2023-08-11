@@ -1,4 +1,5 @@
 using Backend.Data;
+using Backend.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,8 @@ public class UserController : ControllerBase
     [HttpGet("[action]")]
     public IActionResult GetStudentIdAndNames(string searchText)
     {
-        var userIdAndNames = _context.Users.Where(x => x.Name.Contains(searchText))
+        searchText = StringExtensions.Normalize(searchText);
+        var userIdAndNames = _context.Users.Where(x => x.NormalizedName.Contains(searchText))
             .OrderBy(x => x.Name)
             .Take(5)
             .Select(x => new { x.ID, x.Name });

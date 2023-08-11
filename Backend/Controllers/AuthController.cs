@@ -42,6 +42,7 @@ public class AuthController : ControllerBase
             PasswordHash = hashedPassword,
             Role = registerDto.Role.ParseEnum<UserRole>(),
             Name = registerDto.Name,
+            NormalizedName = StringExtensions.Normalize(registerDto.Name),
             BloodGroup = bloodGroup,
             Mobile = registerDto.Mobile,
             Address = new()

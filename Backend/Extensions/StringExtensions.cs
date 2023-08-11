@@ -6,4 +6,9 @@ public static class StringExtensions
     {
         return (T)Enum.Parse(typeof(T), value, true);
     }
+
+    public static string Normalize(string value)
+    {
+        return value.ToLower();
+    }
 }
