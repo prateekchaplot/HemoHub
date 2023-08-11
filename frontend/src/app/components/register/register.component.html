@@ -6,11 +6,59 @@
     <mat-card-content>
       <form>
         <mat-form-field>
+          <input matInput placeholder="Name" name="name" [(ngModel)]="name" />
+        </mat-form-field>
+        <mat-form-field>
           <input
             matInput
             placeholder="Email"
             name="email"
             [(ngModel)]="email"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Mobile"
+            name="mobile"
+            [(ngModel)]="mobile"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Blood Group</mat-label>
+          <mat-select [(ngModel)]="selectedBloodGroup" name="bloodGroup">
+            <mat-option
+              value="{{ bloodGroup }}"
+              *ngFor="let bloodGroup of bloodGroups"
+              >{{ bloodGroup }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Street Address"
+            name="streetAddress"
+            [(ngModel)]="streetAddress"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="City" name="city" [(ngModel)]="city" />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="State"
+            name="state"
+            [(ngModel)]="state"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Country"
+            name="country"
+            [(ngModel)]="country"
           />
         </mat-form-field>
         <mat-form-field>
