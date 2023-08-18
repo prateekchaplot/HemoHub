@@ -1,7 +1,11 @@
 using Backend.Data;
+using Backend.Enums;
 using Backend.Extensions;
+using Backend.Helpers;
+using Backend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -27,5 +31,22 @@ public class UserController : ControllerBase
             .Select(x => new { x.ID, x.Name });
 
         return Ok(userIdAndNames);
+    }
+
+    [HttpPost("[action]")]
+    public IActionResult GetUsers(UserParameters userParameters)
+    {
+        var query = _context.Users.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(userParameters.BloodGroup))
+        {
+            query = query.Where(x => x.BloodGroupStr == userParameters.BloodGroup);
+        }
+
+        var users = query.OrderBy(u => u.Name)
+            .Skip((userParameters.PageNumber - 1) * (userParameters.PageSize))
+            .Take(userParameters.PageSize);
+
+        return Ok(users);
     }
 }
