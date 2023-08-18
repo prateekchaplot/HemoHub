@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Observable, map, startWith } from 'rxjs';
 import { UserIdAndName } from 'src/app/models/user';
 import { ApiService } from 'src/app/services/api.service';
@@ -16,8 +17,10 @@ export class ExchangeComponent {
   filteredOptions: Observable<UserIdAndName[]>;
   selectedOption: UserIdAndName;
 
-  constructor(public appService: AppService, private apiService: ApiService) {
+  constructor(public appService: AppService, private apiService: ApiService, titleService: Title) {
     appService.setUser();
+    titleService.setTitle('Exchange - Hemohub');
+
     this.filteredOptions = new Observable();
     this.selectedOption = {
       id: '',

@@ -1,0 +1,23 @@
+.search-container {
+  margin: 24px;
+}
+
+.search-container form {
+  display: flex;
+}
+
+.search-container mat-form-field {
+  flex: auto;
+}
+
+.table-pagination-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 548px;
+  overflow: hidden;
+}
+
+.table-container {
+  flex: 1;
+  overflow: auto;
+}
