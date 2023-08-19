@@ -18,6 +18,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { ExchangeComponent } from './pages/exchange/exchange.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { AnalyticsComponent } from './pages/analytics/analytics.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
     SearchComponent,
     ExchangeComponent,
     RequestsComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { AnalyticsComponent } from './pages/analytics/analytics.component';
     MatAutocompleteModule,
     MatGridListModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
+import { UserParameters } from '../models/user-parameters';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,11 @@ export class ApiService {
   fetchStudentIdAndNames(text: string): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get(`${this.baseUrl}/api/user/getstudentidandnames?searchText=${text}`, { headers });
+  }
+
+  fetchUsers(params: UserParameters): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.post(`${this.baseUrl}/api/user/getusers`, params, { headers });
   }
 
   /* Utility Methods */

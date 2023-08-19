@@ -28,11 +28,6 @@ export class ExchangeComponent {
     };
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
   onInput(event: Event) {
     const inputValue = (event.target as HTMLInputElement).value;
     if (inputValue.length >= 3) {

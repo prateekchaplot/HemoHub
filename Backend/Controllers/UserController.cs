@@ -43,10 +43,17 @@ public class UserController : ControllerBase
             query = query.Where(x => x.BloodGroupStr == userParameters.BloodGroup);
         }
 
+        var count = query.Count();
         var users = query.OrderBy(u => u.Name)
             .Skip((userParameters.PageNumber - 1) * (userParameters.PageSize))
-            .Take(userParameters.PageSize);
+            .Take(userParameters.PageSize)
+            .Include(x => x.Address)
+            .ToList();
 
-        return Ok(users);
+        return Ok(new
+        {
+            count,
+            items = users
+        });
     }
 }
